@@ -6,32 +6,58 @@ body {
 }
 
 /* Wrapper */
-
 .content-wrapper {
   display: flex;
-  height: 100vh;
+  width: 100%;
 }
 
 /* Sidebar */
-
 .sidebar {
+  position: fixed;
   display: flex;
-  flex: 1;
   flex-direction: column;
   width: 306px;
   max-width: 306px;
-  height: 100%;
+  min-height: 100vh;
   padding: 36px 28px 76px;
   box-sizing: border-box;
   box-shadow: 0px 10px 60px 0px rgba(226, 236, 249, 0.5);
   background: rgb(255, 255, 255);
+  transition: all 0.2s;
 }
 
-.main-section {
-  flex: 1;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(250, 251, 255);
+.sidebar__btn {
+  background-color: rgb(181, 183, 192);
+  border: none;
+  border-radius: 50%;
+  display: block;
+  height: 2.2rem;
+  left: -1.15rem;
+  position: absolute;
+  text-decoration: none;
+  top: 7px;
+  width: 2.2rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.sidebar__btn::after {
+  content: '🡐';
+  color: white;
+  display: block;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: -0.2rem 0 0 0;
+  text-align: center;
+}
+
+.no-sidebar .sidebar {
+  margin-left: -399px;
+}
+
+.no-sidebar .sidebar__btn::after {
+  content: '🡒';
+  margin-left: 0.2rem;
 }
 
 .logo {
@@ -72,7 +98,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 11px 8px;
+  padding: 11px 11px;
   border-radius: 8px;
   color: rgb(145, 151, 179);
   font-size: 14px;
@@ -154,11 +180,18 @@ body {
 }
 
 /* Main Section */
-
 .section {
+  position: absolute;
+  right: 0;
+  min-height: 100vh;
   box-sizing: border-box;
   width: calc(100% - 306px);
   padding: 41px 71px;
+  transition: all 0.2s;
+}
+
+.no-sidebar .section {
+  width: 100%;
 }
 
 .section__title {
@@ -173,7 +206,7 @@ body {
 
 .table-wrapper {
   width: 100%;
-  height: 600px;
+  overflow-x: auto;
   padding: 30px 38px;
   box-sizing: border-box;
   border-radius: 30px;
@@ -184,6 +217,7 @@ body {
 .table-wrapper__header {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin-bottom: 40px;
 }
 
@@ -241,3 +275,152 @@ body {
 }
 
 /* Table */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.table__container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table__row {
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.table__th {
+  color: rgb(181, 183, 192);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -1%;
+  text-align: left;
+}
+
+.table__td {
+  box-sizing: border-box;
+  color: rgb(41, 45, 50);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: left;
+}
+
+.table__td,
+.table__th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 20px 10px;
+}
+
+.status-active {
+  width: 80px;
+  padding: 4px 18px;
+  box-sizing: border-box;
+  border: 1px solid rgb(0, 176, 135);
+  border-radius: 4px;
+  background: rgba(22, 192, 152, 0.38);
+  color: rgb(0, 135, 103);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -1%;
+  text-align: left;
+}
+
+.status-inactive {
+  width: 80px;
+  padding: 4px 12px;
+  box-sizing: border-box;
+  border: 1px solid rgb(223, 4, 4);
+  border-radius: 4px;
+  background: rgb(255, 197, 197);
+  color: rgb(223, 4, 4);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -1%;
+  text-align: left;
+}
+
+.table-wrapper__footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.footer__text {
+  color: rgb(181, 183, 192);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -1%;
+  text-align: left;
+}
+
+.footer__pagination {
+  display: flex;
+}
+
+.pagination__elem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 26px;
+  height: 24px;
+  align-items: center;
+  padding: 6px 9px 6px 9px;
+  box-sizing: border-box;
+  border: 1px solid rgb(238, 238, 238);
+  border-radius: 4px;
+  background: rgb(245, 245, 245);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pagination__elem:hover {
+  border: 1px solid rgb(89, 50, 234);
+  background: rgb(89, 50, 234);
+  color: white;
+}
+
+.pagination__dots {
+  margin-right: 12px;
+}
+
+.pagination__elem:not(:last-child) {
+  margin-right: 12px;
+}
+
+.pagination__elem-active {
+  border: 1px solid rgb(89, 50, 234);
+  background: rgb(89, 50, 234);
+  color: white;
+}
+
+.th-status {
+  padding-right: 29px;
+  text-align: right;
+}
+
+.td__status {
+  text-align: -webkit-right;
+}
+
+/* Media */
+@media (max-width: 950px) {
+  .section {
+    padding: 25px 15px;
+  }
+}
+
+@media (min-width: 950px) {
+  .sidebar__btn {
+    display: none;
+  }
+}
